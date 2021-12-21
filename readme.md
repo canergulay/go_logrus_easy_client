@@ -7,7 +7,7 @@ Will be empowered with new features soon.
 
 ## *Features*
 - Create new log files periodically, depending on a given interval & path.
-
+- Zip your log files, move to archive.
 ## *Todo & Upcoming Features*
 - Zip logged files depending on some certain mod.
 - Mail those zip files to a given email.
