@@ -26,6 +26,7 @@ type Logruster struct {
 //MODFORZIPPING = WHAT WOULD YOU LIKE MOD TO BE ? , IN WHAT INTERVAL YOUR LOGS SHOULD BE ZIPPED ? - E.G : IF YOU GIVE 10, YOUR LOGS WILL BE ZIPPED WHEN THEY REACH 10 AND 10K
 //LOGFILEPATH = WHAT IS THE PATH IN THE ROOT, WHERE LOGS SHOULD BE LOCATED
 func New(timeToReLog int, modForZipping int, logFilePath string) Logruster {
+
 	createLogDirectories(logFilePath)
 	//WE WILL INIT THE FILE FIRST
 	file := initTheFile(logFilePath)
@@ -86,13 +87,16 @@ func checkForZip(modForZipping int, path string) {
 		defer zipWriter.Close()
 		files, _ := ioutil.ReadDir(fmt.Sprintf("./%s", path))
 
-		for _, f := range files {
+		for i, f := range files {
+			fmt.Println(i)
 			filePath := fmt.Sprintf("./%s/%s", path, f.Name())
 			logFile, _ := os.Open(filePath)
-			defer logFile.Close()
 			w, err := zipWriter.Create(f.Name())
 			checkError(err)
 			io.Copy(w, logFile)
+			logFile.Close()
+			err5 := os.Remove(filePath)
+			checkError(err5)
 			fmt.Println(filePath)
 		}
 

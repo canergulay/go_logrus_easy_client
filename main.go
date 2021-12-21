@@ -14,7 +14,7 @@ func main() {
 	// WE WILL INITIALISE OUR LOGRUSTER WITH AN INTERVAL OF 10 SECONDS
 	// WHICH MEANS IT WILL RECREATE A BRAND NEW LOG FILE IN A INTERVAL OF 10 SECONDS
 	// IT WILL ALSO SAVE ALL OF THOSE STUFF IN "/logs" DIRECTORY AS WE GIVE IT SO.
-	logruster := logruster.New(int(time.Second*1), 10, "logs")
+	logruster := logruster.New(int(time.Second*1), 15, "logs")
 
 	// LETS LOG SOME DUMMY DATA AND SEE WHAT HAPPENS
 	for i := 0; i < 10000; i++ {
